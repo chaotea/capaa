@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>CAPAA</title>
+	<meta charset="UTF-8">
+</head>
+<body>
+	<table>
+		<tr>
+			{% for column in hiscores.column_names %}
+			<th>{{ column }}</th>
+			{% endfor %}
+		</tr>
+		{% for row in hiscores.rows %}
+		<tr>
+			{% for value in row %}
+			<td>{{value}}</td>
+			{% endfor %}
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>
