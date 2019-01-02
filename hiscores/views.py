@@ -21,8 +21,8 @@ def index(request):
         "column_names": ["Doge", "Rank", "Wins", "Losses", "Total"],
         "rows": []
     }
-    get_stats(username)
     for username in usernames:
+        get_stats(username)
         latest = Player.objects.filter(name=username).latest("datetime")
         if latest.datetime < (timezone.now() - datetime.timedelta(days=1)):
             get_stats(username)
