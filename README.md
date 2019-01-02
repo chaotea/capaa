@@ -1,2 +1,2 @@
 # CAPAA
-[League of Petards](https://capaa.herokuapp.com)
+[CAPAA](https://capaa.herokuapp.com) is a Django app that shows you just how boosted you are.
