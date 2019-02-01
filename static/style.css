@@ -1,0 +1,64 @@
+@import url("https://fonts.googleapis.com/css?family=Hind");
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    font-family: "Hind", Arial, sans-sans-serif;
+    font-size: 16px;
+    color: #111111;
+}
+
+div {
+    padding-top: 10vh;
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 500;
+    line-height: 1.0;
+}
+
+p {
+    margin-bottom: 10vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+table {
+    margin: auto;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+tr.row:hover {
+    color: #111111;
+    background-color: #F5F5F5;
+    transition: all 0.25s ease;
+}
+
+th {
+    margin: 0px;
+    padding: 10px;
+    border-bottom: 1px solid #000000;
+}
+
+td {
+    margin: 0px;
+    padding: 10px;
+    border-top: 1px solid #000000;
+}
+
+td.number {
+    text-align: right;
+}

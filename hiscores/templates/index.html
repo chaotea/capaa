@@ -5,21 +5,30 @@
 	<title>CAPAA</title>
 	<meta charset="UTF-8">
 	<link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+	<link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
-	<table>
-		<tr>
-			{% for column in hiscores.column_names %}
-			<th>{{ column }}</th>
+	<div>
+		<h1>CAPAA Hiscores</h1>
+		<p>Data scraped from <a href="http://na.op.gg/">op.gg</a></p>
+		<table>
+			<tr class="header">
+				<th>Player</th>
+				<th>Rank</th>
+				<th>Wins</th>
+				<th>Losses</th>
+				<th>Total</th>
+			</tr>
+			{% for row in hiscores.rows %}
+			<tr class="row">
+				<td>{{row.0}}</td>
+				<td>{{row.1}}</td>
+				<td class="number">{{row.2}}</td>
+				<td class="number">{{row.3}}</td>
+				<td class="number">{{row.4}}</td>
+			</tr>
 			{% endfor %}
-		</tr>
-		{% for row in hiscores.rows %}
-		<tr>
-			{% for value in row %}
-			<td>{{value}}</td>
-			{% endfor %}
-		</tr>
-		{% endfor %}
-	</table>
+		</table>
+	</div>
 </body>
 </html>

@@ -9,23 +9,23 @@ from bs4 import BeautifulSoup
 
 usernames = [
     "ChaoTea",
-    "A1Shoe",
     "joegrenda",
-    "ANC00",
-    "albertfuxgoats"
+    "A1Shoe",
+    "albertfuxgoats",
+    "ANC00"
 ]
 
 def index(request):
 
     table_dict = {
-        "column_names": ["Doge", "Rank", "Wins", "Losses", "Total"],
         "rows": []
     }
     for username in usernames:
         latest = Player.objects.filter(name=username).latest("datetime")
-        if latest.datetime < (timezone.now() - datetime.timedelta(days=1)):
-            get_stats(username)
-            latest = Player.objects.filter(name=username).latest("datetime")
+
+        # if latest.datetime < (timezone.now() - datetime.timedelta(days=1)):
+        #     get_stats(username)
+        #     latest = Player.objects.filter(name=username).latest("datetime")
 
         table_dict["rows"].append([latest.name, latest.rank, latest.wins, latest.losses, latest.total])
 
