@@ -11,7 +11,7 @@ usernames = [
     "ChaoTea",
     "joegrenda",
     "A1Shoe",
-    "albertfuxgoats",
+    # "albertfuxgoats",
     "ANC00"
 ]
 
