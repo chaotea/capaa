@@ -10,7 +10,7 @@ def index(request):
         "rows": []
     }
 
-    usernames = list(Player.objects.values_list("name", flat=True))
+    usernames = set(Player.objects.values_list("name", flat=True))
 
     for username in usernames:
         latest = Player.objects.filter(name=username).latest("datetime")
