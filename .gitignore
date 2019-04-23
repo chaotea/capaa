@@ -1,5 +1,6 @@
 .DS_Store
 .pyc
+.vscode
 __pycache__
 venv
 local_settings.py
