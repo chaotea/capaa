@@ -3,31 +3,56 @@ from django.utils import timezone
 
 from .models import Player
 
-import datetime
-import requests
-from bs4 import BeautifulSoup
-
-usernames = [
-    "ChaoTea",
-    "joegrenda",
-    "A1Shoe",
-    "albertfuxgoats",
-    "ANC00"
-]
 
 def index(request):
 
     table_dict = {
         "rows": []
     }
+
+    usernames = list(Player.objects.values_list("name", flat=True))
+
     for username in usernames:
         latest = Player.objects.filter(name=username).latest("datetime")
-
-        # if latest.datetime < (timezone.now() - datetime.timedelta(days=1)):
-        #     get_stats(username)
-        #     latest = Player.objects.filter(name=username).latest("datetime")
-
         table_dict["rows"].append([latest.name, latest.rank, latest.wins, latest.losses, latest.total])
+
+    def sort_ranks(element):
+        rank = element[1]
+        if rank.startswith("Iron"):
+            rank_value = 10
+        elif rank.startswith("Bronze"):
+            rank_value = 20
+        elif rank.startswith("Silver"):
+            rank_value = 30
+        elif rank.startswith("Gold"):
+            rank_value = 40
+        elif rank.startswith("Plat"):
+            rank_value = 50
+        elif rank.startswith("Diamond"):
+            rank_value = 60
+        elif rank.startswith("Master"):
+            rank_value = 70
+        elif rank.startswith("Grandmaster"):
+            rank_value = 80
+        elif rank.startswith("Challenger"):
+            rank_value = 90
+        else:
+            rank_value = 0
+        if rank.endswith("5"):
+            rank_value += 1
+        elif rank.endswith("4"):
+            rank_value += 2
+        elif rank.endswith("3"):
+            rank_value += 3
+        elif rank.endswith("2"):
+            rank_value += 4
+        elif rank.endswith("1"):
+            rank_value += 5
+        else:
+            rank_value += 0
+        return rank_value
+
+    table_dict["rows"].sort(key=sort_ranks, reverse=True)
 
     context = {
         "hiscores": table_dict,
@@ -36,6 +61,8 @@ def index(request):
     return render(request, "index.html", context)
 
 def get_stats(username):
+    import requests
+    from bs4 import BeautifulSoup
     try:
         page = requests.get(f"http://na.op.gg/summoner/userName={username}")
         html = BeautifulSoup(page.text, "html.parser")

@@ -12,10 +12,10 @@ html, body {
 
 div {
     display: flex;
-    padding: 100px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 50px;
 }
 
 img {
